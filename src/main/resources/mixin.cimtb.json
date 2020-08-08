@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "me.shedaniel.cimtb.mixin",
+  "minVersion": "0.7.11",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [],
+  "client": [
+    "MixinItem"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

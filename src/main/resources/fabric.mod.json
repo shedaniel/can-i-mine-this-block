@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "can-i-mine-this-block",
+  "version": "${version}",
+  "name": "can i mine this block?",
+  "description": "this mod is for very smart people who need a mod to know if they can mine a block.",
+  "authors": [
+    "shedaniel"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*",
+    "waila": "*"
+  },
+  "entrypoints": {
+    "client": [
+      "me.shedaniel.cimtb.Cimtb"
+    ]
+  },
+  "mixins": [
+    "mixin.cimtb.json"
+  ],
+  "custom": {
+    "waila:plugins": {
+      "id": "cimtb:cimtb_plugin",
+      "initializer": "me.shedaniel.cimtb.CimtbWailaPlugin"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# Roughly Enough Resources
+
+This is meant to be a replacement for [Just Enough Resources](https://minecraft.curseforge.com/projects/just-enough-resources-jer), which itself is meant as a replacement for [Not Enough Resources](https://minecraft.curseforge.com/projects/notenoughresources).
+
+In short, it will show you what blocks spawn at what heights in the world.  Note that there are some cases where blocks (which are what the world is made of) and items (which is what REI will show recipies for) don't completely mesh up.  RER tries to account for this in several ways.  Some of these will show up as multiple recipies attached to the same item -- for example, torches on walls and torches on the floor are different blocks, but the same item.  Others will show as a vaugely related item -- water and lava show as their coorosponding buckets, and fire blocks show up as flint & steel.  A few different blocks show up as air.  REI, somewhat sadly, has strangely partial support for air -- if you try hitting the "R" button on an air item, nothing will happen.  Recipies for air are only visible on the list of all "world generation" recpies.
