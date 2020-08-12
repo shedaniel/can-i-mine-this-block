@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "can-i-mine-this-block",
   "version": "${version}",
-  "name": "can i mine this block?",
+  "name": "cAn i MiNe thIS bLOCk?",
   "description": "this mod is for very smart people who need a mod to know if they can mine a block.",
   "authors": [
     "shedaniel"
