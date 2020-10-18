@@ -1,0 +1,21 @@
+{
+  "cimtb.effective_tool": "Эффективный инструмент: ",
+  "cimtb.harvest_level": "Уровень добычи: ",
+  "cimtb.harvestable.symbol.false": "§4\u2718",
+  "cimtb.harvestable.symbol.true": "§2\u2714",
+  "cimtb.harvestable": " Можно добыть",
+  
+  "cimtb.harvest_level.level.format": "%s (%s)",
+  "cimtb.harvest_level.level.0": "§7Камень",
+  "cimtb.harvest_level.level.1": "§fЖелезо",
+  "cimtb.harvest_level.level.2": "§bАлмаз",
+  "cimtb.harvest_level.level.3": "§5Обсидиан",
+  "cimtb.harvest_level.level.4": "§dМетеорит",
+
+  "cimtb.effective_tool.fabric.axes": "Топор",
+  "cimtb.effective_tool.fabric.hoes": "Мотыга",
+  "cimtb.effective_tool.fabric.pickaxes": "Кирка",
+  "cimtb.effective_tool.fabric.shears": "Ножницы",
+  "cimtb.effective_tool.fabric.shovels": "Лопата",
+  "cimtb.effective_tool.fabric.swords": "Меч"
+}
