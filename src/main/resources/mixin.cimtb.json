@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [
-    "MixinItem"
+    "MixinItemStack"
   ],
   "injectors": {
     "defaultRequire": 1

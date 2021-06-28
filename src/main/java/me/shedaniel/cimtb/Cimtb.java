@@ -3,6 +3,7 @@ package me.shedaniel.cimtb;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.tag.Tag;
 

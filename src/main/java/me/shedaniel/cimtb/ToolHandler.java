@@ -1,10 +1,11 @@
 package me.shedaniel.cimtb;
 
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
 import net.fabricmc.fabric.api.tool.attribute.v1.DynamicAttributeTool;
-import net.fabricmc.fabric.impl.tool.attribute.ToolManagerImpl;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
@@ -12,33 +13,29 @@ import net.minecraft.tag.Tag;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Lazy;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public final class ToolHandler {
     public static final List<ToolHandler> TOOL_HANDLERS = Lists.newArrayList();
     
     public final Tag.Identified<Item> tag;
     public final Item defaultTool;
-    private final Lazy<Integer> maximumLevel = new Lazy<>(() -> {
-        return Math.max(
-                4,
-                Registry.BLOCK.stream()
-                        .map(ToolManagerImpl::entryNullable)
-                        .map(this::getMaxOfEntry)
-                        .max(Integer::compareTo)
-                        .orElse(0)
-        );
+    private final Supplier<Integer> maximumLevel = Suppliers.memoize(() -> {
+        int highest = 3;
+        for (Item item : Registry.ITEM) {
+            if (item instanceof ToolItem toolItem) {
+                int miningLevel = toolItem.getMaterial().getMiningLevel();
+                if (miningLevel > highest) {
+                    highest = miningLevel;
+                }
+            }
+        }
+        return highest;
     });
-    
-    private int getMaxOfEntry(ToolManagerImpl.Entry entry) {
-        if (entry != null)
-            return entry.getMiningLevel(tag);
-        return -1;
-    }
     
     public ToolHandler(Map.Entry<Tag<Item>, Item> entry) {
         this.tag = (Tag.Identified<Item>) entry.getKey();
@@ -46,10 +43,10 @@ public final class ToolHandler {
     }
     
     private boolean supportsTool(ItemStack stack) {
-        return stack.getItem().isIn(tag);
+        return stack.isIn(tag);
     }
     
-    public Integer supportsBlock(BlockState state, LivingEntity user) {
+    public Integer supportsBlock(BlockState state, PlayerEntity user) {
         ItemStack itemStack = new ItemStack(defaultTool);
         if (defaultToolSupportsMutableLevel()) {
             for (int level = 0; level <= maximumLevel.get(); level++) {

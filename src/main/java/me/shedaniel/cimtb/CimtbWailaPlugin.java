@@ -19,14 +19,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class CimtbWailaPlugin implements IWailaPlugin, IComponentProvider {
+public class CimtbWailaPlugin implements IWailaPlugin, IBlockComponentProvider {
     @Override
     public void register(IRegistrar registrar) {
-        registrar.registerComponentProvider(this, TooltipPosition.BODY, Block.class);
+        registrar.addComponent(this, TooltipPosition.BODY, Block.class);
     }
     
     @Override
-    public void appendBody(List<Text> tooltipTexts, IDataAccessor accessor, IPluginConfig config) {
+    public void appendBody(List<Text> tooltipTexts, IBlockAccessor accessor, IPluginConfig config) {
         BlockState state = accessor.getBlockState();
         World world = accessor.getWorld();
         BlockPos position = accessor.getPosition();
