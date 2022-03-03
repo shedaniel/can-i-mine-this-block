@@ -6,11 +6,11 @@
   "cimtb.harvestable": " Currently Harvestable",
   
   "cimtb.harvest_level.level.format": "%s (%s)",
-  "cimtb.harvest_level.level.0": "§7Wood",
-  "cimtb.harvest_level.level.1": "§fStone",
-  "cimtb.harvest_level.level.2": "§bIron",
-  "cimtb.harvest_level.level.3": "§5Diamond",
-  "cimtb.harvest_level.level.4": "§dNetherite",
+  "cimtb.harvest_level.level.0": "§6Wood / Gold",
+  "cimtb.harvest_level.level.1": "§7Stone",
+  "cimtb.harvest_level.level.2": "§fIron",
+  "cimtb.harvest_level.level.3": "§bDiamond",
+  "cimtb.harvest_level.level.4": "§0Netherite",
 
   "cimtb.effective_tool.fabric.axes": "Axe",
   "cimtb.effective_tool.fabric.hoes": "Hoe",
