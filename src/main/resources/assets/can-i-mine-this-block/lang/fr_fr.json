@@ -6,11 +6,11 @@
   "cimtb.harvestable": "Récoltable",
   
   "cimtb.harvest_level.level.format": "%s (%s)",
-  "cimtb.harvest_level.level.0": "§6Bois / Or",
-  "cimtb.harvest_level.level.1": "§7Pierre",
-  "cimtb.harvest_level.level.2": "§fFer",
-  "cimtb.harvest_level.level.3": "§bDiamant",
-  "cimtb.harvest_level.level.4": "§0Netherite",
+  "cimtb.harvest_level.level.0": "§7Pierre",
+  "cimtb.harvest_level.level.1": "§fFer",
+  "cimtb.harvest_level.level.2": "§bDiamant",
+  "cimtb.harvest_level.level.3": "§5Obsidienne",
+  "cimtb.harvest_level.level.4": "§dMétite",
 
   "cimtb.effective_tool.fabric.axes": "Hache",
   "cimtb.effective_tool.fabric.hoes": "Houe",
