@@ -1,30 +1,36 @@
 package me.shedaniel.cimtb;
 
+import me.shedaniel.cimtb.mixin.MappedRegistryAccessor;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.tag.Tag;
+import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
+import net.minecraft.core.Registry;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.AbstractMap;
 
 public class Cimtb implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        registerTool(FabricToolTags.SHEARS, Items.SHEARS);
-        registerTool(FabricToolTags.SWORDS, new SwordItem(new MutableToolMaterial(0), 0, 0, new Item.Settings()) {});
-        registerTool(FabricToolTags.PICKAXES, new PickaxeItem(new MutableToolMaterial(0), 0, 0, new Item.Settings()) {});
-        registerTool(FabricToolTags.AXES, new AxeItem(new MutableToolMaterial(0), 0, 0, new Item.Settings()) {});
-        registerTool(FabricToolTags.SHOVELS, new ShovelItem(new MutableToolMaterial(0), 0, 0, new Item.Settings()) {});
-        registerTool(FabricToolTags.HOES, new HoeItem(new MutableToolMaterial(0), 0, 0, new Item.Settings()) {});
+        registerTool(FabricMineableTags.SHEARS_MINEABLE, Items.SHEARS);
+        registerTool(FabricMineableTags.SWORD_MINEABLE, new SwordItem(new MutableToolMaterial(0), 0, 0, new Item.Properties()) {});
+        registerTool(BlockTags.MINEABLE_WITH_PICKAXE, new PickaxeItem(new MutableToolMaterial(0), 0, 0, new Item.Properties()) {});
+        registerTool(BlockTags.MINEABLE_WITH_AXE, new AxeItem(new MutableToolMaterial(0), 0, 0, new Item.Properties()) {});
+        registerTool(BlockTags.MINEABLE_WITH_SHOVEL, new ShovelItem(new MutableToolMaterial(0), 0, 0, new Item.Properties()) {});
+        registerTool(BlockTags.MINEABLE_WITH_HOE, new HoeItem(new MutableToolMaterial(0), 0, 0, new Item.Properties()) {});
     }
     
-    public static void registerTool(Tag<Item> tag, Item item) {
+    public static void registerTool(TagKey<Block> tag, Item item) {
         ToolHandler.TOOL_HANDLERS.add(new ToolHandler(new AbstractMap.SimpleImmutableEntry<>(tag, item)));
+        if (Registry.ITEM.getResourceKey(item).isEmpty()) {
+            ((MappedRegistryAccessor<Item>) Registry.ITEM).getIntrusiveHolderCache().remove(item);
+        }
     }
     
     public static boolean isEffective(ItemStack stack, BlockState state) {
-        return stack.isEffectiveOn(state) || (!state.isToolRequired() && stack.getMiningSpeed(state) > 1.0F);
+        return stack.isCorrectToolForDrops(state) || (!state.requiresCorrectToolForDrops() && stack.getDestroySpeed(state) > 1.0F);
     }
 }

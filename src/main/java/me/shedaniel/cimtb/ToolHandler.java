@@ -2,18 +2,18 @@ package me.shedaniel.cimtb;
 
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
-import net.fabricmc.fabric.api.tool.attribute.v1.DynamicAttributeTool;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
-import net.minecraft.tag.Tag;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 import java.util.Map;
@@ -22,13 +22,13 @@ import java.util.function.Supplier;
 public final class ToolHandler {
     public static final List<ToolHandler> TOOL_HANDLERS = Lists.newArrayList();
     
-    public final Tag.Identified<Item> tag;
+    public final TagKey<Block> tag;
     public final Item defaultTool;
     private final Supplier<Integer> maximumLevel = Suppliers.memoize(() -> {
         int highest = 3;
         for (Item item : Registry.ITEM) {
-            if (item instanceof ToolItem toolItem) {
-                int miningLevel = toolItem.getMaterial().getMiningLevel();
+            if (item instanceof TieredItem toolItem) {
+                int miningLevel = toolItem.getTier().getLevel();
                 if (miningLevel > highest) {
                     highest = miningLevel;
                 }
@@ -37,16 +37,12 @@ public final class ToolHandler {
         return highest;
     });
     
-    public ToolHandler(Map.Entry<Tag<Item>, Item> entry) {
-        this.tag = (Tag.Identified<Item>) entry.getKey();
+    public ToolHandler(Map.Entry<TagKey<Block>, Item> entry) {
+        this.tag = entry.getKey();
         this.defaultTool = entry.getValue();
     }
     
-    private boolean supportsTool(ItemStack stack) {
-        return stack.isIn(tag);
-    }
-    
-    public Integer supportsBlock(BlockState state, PlayerEntity user) {
+    public Integer supportsBlock(BlockState state, Player user) {
         ItemStack itemStack = new ItemStack(defaultTool);
         if (defaultToolSupportsMutableLevel()) {
             for (int level = 0; level <= maximumLevel.get(); level++) {
@@ -65,23 +61,21 @@ public final class ToolHandler {
     }
     
     private boolean defaultToolSupportsMutableLevel() {
-        return defaultTool instanceof ToolItem && ((ToolItem) defaultTool).getMaterial() instanceof MutableToolMaterial;
+        return defaultTool instanceof TieredItem && ((TieredItem) defaultTool).getTier() instanceof MutableToolMaterial;
     }
     
     private void setDefaultToolSupportsMutableLevel(int level) {
-        ((MutableToolMaterial) ((ToolItem) defaultTool).getMaterial()).miningLevel = level;
+        ((MutableToolMaterial) ((TieredItem) defaultTool).getTier()).miningLevel = level;
     }
     
     private int getToolMiningLevel(ItemStack stack, BlockState state, LivingEntity user) {
         Item item = stack.getItem();
-        if (item instanceof DynamicAttributeTool)
-            return ((DynamicAttributeTool) item).getMiningLevel(tag, state, stack, user);
-        if (item instanceof ToolItem)
-            return ((ToolItem) item).getMaterial().getMiningLevel();
+        if (item instanceof TieredItem)
+            return ((TieredItem) item).getTier().getLevel();
         return 0;
     }
     
-    public Text getToolDisplay() {
-        return new TranslatableText("cimtb.effective_tool." + tag.getId().getNamespace() + "." + tag.getId().getPath()).formatted(Formatting.DARK_GREEN);
+    public Component getToolDisplay() {
+        return new TranslatableComponent("cimtb.effective_tool." + tag.location().getNamespace() + "." + tag.location().getPath().replace('/', '.')).withStyle(ChatFormatting.DARK_GREEN);
     }
 }

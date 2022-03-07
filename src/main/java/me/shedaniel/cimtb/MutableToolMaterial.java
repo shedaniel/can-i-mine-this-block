@@ -1,9 +1,9 @@
 package me.shedaniel.cimtb;
 
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
-public class MutableToolMaterial implements ToolMaterial {
+public class MutableToolMaterial implements Tier {
     public int miningLevel;
     
     public MutableToolMaterial(int miningLevel) {
@@ -11,27 +11,27 @@ public class MutableToolMaterial implements ToolMaterial {
     }
     
     @Override
-    public int getDurability() {
+    public int getUses() {
         return 1;
     }
     
     @Override
-    public float getMiningSpeed() {
+    public float getSpeed() {
         return 1.01f;
     }
     
     @Override
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return 0;
     }
     
     @Override
-    public int getMiningLevel() {
+    public int getLevel() {
         return miningLevel;
     }
     
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return 1;
     }
     

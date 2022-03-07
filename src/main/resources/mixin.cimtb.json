@@ -3,9 +3,8 @@
   "package": "me.shedaniel.cimtb.mixin",
   "minVersion": "0.7.11",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": ["MappedRegistryAccessor"],
   "client": [
-    "MixinItemStack"
   ],
   "injectors": {
     "defaultRequire": 1
