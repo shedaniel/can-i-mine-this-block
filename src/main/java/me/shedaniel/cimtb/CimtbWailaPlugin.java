@@ -4,9 +4,8 @@ import mcp.mobius.waila.api.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -46,8 +45,8 @@ public class CimtbWailaPlugin implements IWailaPlugin, IBlockComponentProvider {
             int level = entry.getRight();
             
             boolean harvestable = !state.requiresCorrectToolForDrops() || (!stack.isEmpty() && Cimtb.isEffective(stack, state));
-            tooltipTexts.addLine(new TranslatableComponent("cimtb.harvestable.symbol." + harvestable).append(new TranslatableComponent("cimtb.harvestable").withStyle(ChatFormatting.GRAY)));
-            tooltipTexts.addLine(new TranslatableComponent("cimtb.effective_tool").withStyle(ChatFormatting.GRAY).append(handler.getToolDisplay()));
+            tooltipTexts.addLine(Component.translatable("cimtb.harvestable.symbol." + harvestable).append(Component.translatable("cimtb.harvestable").withStyle(ChatFormatting.GRAY)));
+            tooltipTexts.addLine(Component.translatable("cimtb.effective_tool").withStyle(ChatFormatting.GRAY).append(handler.getToolDisplay()));
             
             if (level > 0) {
                 int[] textColor = {11184810};
@@ -62,7 +61,7 @@ public class CimtbWailaPlugin implements IWailaPlugin, IBlockComponentProvider {
                     text = I18n.get("cimtb.harvest_level.level.format", translate, level);
                 }
                 
-                tooltipTexts.addLine(new TranslatableComponent("cimtb.harvest_level").withStyle(ChatFormatting.GRAY).append(new TextComponent(text).withStyle(
+                tooltipTexts.addLine(Component.translatable("cimtb.harvest_level").withStyle(ChatFormatting.GRAY).append(Component.literal(text).withStyle(
                         style -> style.withColor(TextColor.fromRgb(textColor[0]))
                 )));
             }
