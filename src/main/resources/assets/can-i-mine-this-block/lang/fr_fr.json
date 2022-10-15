@@ -1,0 +1,21 @@
+{
+  "cimtb.effective_tool": "Outil efficace : ",
+  "cimtb.harvest_level": "Niveau de récolte : ",
+  "cimtb.harvestable.symbol.false": "§4\u2718",
+  "cimtb.harvestable.symbol.true": "§2\u2714",
+  "cimtb.harvestable": "Récoltable",
+  
+  "cimtb.harvest_level.level.format": "%s (%s)",
+  "cimtb.harvest_level.level.0": "§7Pierre",
+  "cimtb.harvest_level.level.1": "§fFer",
+  "cimtb.harvest_level.level.2": "§bDiamant",
+  "cimtb.harvest_level.level.3": "§5Obsidienne",
+  "cimtb.harvest_level.level.4": "§dMétite",
+
+  "cimtb.effective_tool.fabric.axes": "Hache",
+  "cimtb.effective_tool.fabric.hoes": "Houe",
+  "cimtb.effective_tool.fabric.pickaxes": "Pioche",
+  "cimtb.effective_tool.fabric.shears": "Cisailles",
+  "cimtb.effective_tool.fabric.shovels": "Pelle",
+  "cimtb.effective_tool.fabric.swords": "Épée"
+}
