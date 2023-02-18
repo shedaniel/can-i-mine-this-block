@@ -3,7 +3,7 @@ package me.shedaniel.cimtb;
 import me.shedaniel.cimtb.mixin.MappedRegistryAccessor;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
@@ -25,8 +25,8 @@ public class Cimtb implements ClientModInitializer {
     
     public static void registerTool(TagKey<Block> tag, Item item) {
         ToolHandler.TOOL_HANDLERS.add(new ToolHandler(new AbstractMap.SimpleImmutableEntry<>(tag, item)));
-        if (Registry.ITEM.getResourceKey(item).isEmpty()) {
-            ((MappedRegistryAccessor<Item>) Registry.ITEM).getIntrusiveHolderCache().remove(item);
+        if (BuiltInRegistries.ITEM.getResourceKey(item).isEmpty()) {
+            ((MappedRegistryAccessor<Item>) BuiltInRegistries.ITEM).getUnregisteredIntrusiveHolders().remove(item);
         }
     }
     
