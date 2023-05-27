@@ -25,8 +25,11 @@ dependencies {
         exclude group: "net.fabricmc.fabric-api"
     }
 
-    modCompileOnly "curse.maven:wthit-440979:${hwyla_version}"
-    modLocalRuntime "curse.maven:wthit-440979:${hwyla_version}"
+    modCompileOnly "curse.maven:wthit-440979:${wthit_version}"
+    modCompileOnly "curse.maven:jade-324717:${jade_version}"
+    // modLocalRuntime "curse.maven:wthit-440979:${wthit_version}"
+    // modLocalRuntime "curse.maven:badpackets-615134:${badpackets_version}"
+    modLocalRuntime "curse.maven:jade-324717:${jade_version}"
 }
 
 processResources {

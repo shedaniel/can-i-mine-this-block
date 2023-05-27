@@ -11,12 +11,14 @@
   "environment": "client",
   "depends": {
     "fabricloader": ">=0.4.0",
-    "fabric-api": "*",
-    "waila": "*"
+    "fabric-api": "*"
   },
   "entrypoints": {
     "client": [
       "me.shedaniel.cimtb.Cimtb"
+    ],
+    "jade": [
+      "me.shedaniel.cimtb.CimtbJadePlugin"
     ]
   },
   "mixins": [
