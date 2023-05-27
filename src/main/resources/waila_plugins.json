@@ -1,0 +1,6 @@
+{
+  "cimtb:cimtb_plugin": {
+    "initializer": "me.shedaniel.cimtb.CimtbWailaPlugin",
+    "side": "client"
+  }
+}

@@ -12,5 +12,5 @@ import java.util.Map;
 public interface MappedRegistryAccessor<T> {
     @Nullable
     @Accessor
-    Map<T, Holder.Reference<T>> getIntrusiveHolderCache();
+    Map<T, Holder.Reference<T>> getUnregisteredIntrusiveHolders();
 }
