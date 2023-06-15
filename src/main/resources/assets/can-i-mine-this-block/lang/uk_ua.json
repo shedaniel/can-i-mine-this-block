@@ -1,0 +1,20 @@
+{
+  "cimtb.effective_tool": "Ефективний інструмент: ",
+  "cimtb.harvest_level": "Рівень збирання: ",
+  "cimtb.harvestable.symbol.false": "§4\u2718",
+  "cimtb.harvestable.symbol.true": "§2\u2714",
+  "cimtb.harvestable": " Можна зібрати",
+  
+  "cimtb.harvest_level.level.format": "%s (%s)",
+  "cimtb.harvest_level.level.0": "§7Камінь",
+  "cimtb.harvest_level.level.1": "§fЗалізо",
+  "cimtb.harvest_level.level.2": "§bДіамант",
+  "cimtb.harvest_level.level.3": "§5Обсидіан",
+
+  "cimtb.effective_tool.minecraft.mineable.axe": "Сокира",
+  "cimtb.effective_tool.minecraft.mineable.hoe": "Мотика",
+  "cimtb.effective_tool.minecraft.mineable.pickaxe": "Кайло",
+  "cimtb.effective_tool.fabric.mineable.shears": "Ножиці",
+  "cimtb.effective_tool.minecraft.mineable.shovel": "Лопата",
+  "cimtb.effective_tool.fabric.mineable.sword": "Меч"
+}
